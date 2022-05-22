@@ -1,0 +1,30 @@
+@import './index.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+* {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+:root {
+    --Background: #fafafa;
+    --BackgroundElmns: #fff;
+    --textColor: #111517;
+    --InputColor: #858585;
+    --Boxshadow: #F2F2F2
+}
+
+[data-theme="dark"] {
+    --Background: #202c37;
+    --BackgroundElmns: #2b3945;
+    --textColor: #fff;
+    --InputColor: #CDD3D6;
+}
+
+.app {
+    min-height: 100vh;
+    background-color: var(--Background);
+}
+
+.container-fluid {
+    padding-right: 4rem!important;
+    padding-left: 4rem!important;
+}
