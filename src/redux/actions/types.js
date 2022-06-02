@@ -2,3 +2,5 @@ export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const FETCH_ALL_COUNTRIES = "FETCH_ALL_COUNTRIES";
+
+export const FETCH_COUNTRY = "FETCH_COUNTRY";

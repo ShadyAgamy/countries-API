@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import NavBar from "../../components/navbar";
 import Select from "../../components/selectBox";
 import CountryCard from "../../components/countryCard";
 
-import { Container, InputGroup, FormControl, Row, Col, Button } from "react-bootstrap";
+import { Container, InputGroup, FormControl, Row, Col, Button, Spinner } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -15,13 +16,43 @@ import { getAllCountries } from "../../redux/actions/countries";
 import "./styles.scss";
 
 const HomePage = () => {
+  const fetchedCountries = useSelector((state) => state.allCountries.all);
+  const [nameSearchField, setNameSearchField] = useState("");
+  const [regionFilter, setRegionFilter] = useState("");
+  const [countiesToDisplay, setCountiesToDisplay] = useState([]);
   const dispatch = useDispatch();
-  const allCountries = useSelector((state) => state.allCountries);
+  const [allCountries, setAllCountries] = useState([]);
+
+
+  useEffect(() => {
+    setAllCountries(fetchedCountries)
+  }, [fetchedCountries])
+  
+
   useEffect(() => {
     dispatch(getAllCountries());
   }, [dispatch]);
 
-  console.log(allCountries);
+  useEffect(() => {
+    setCountiesToDisplay(allCountries.splice(0, 8));
+  }, [allCountries]);
+
+  const fetchMoreData = () => {
+    setCountiesToDisplay(countiesToDisplay.concat(allCountries.splice(0, 8)));
+  };
+
+  // filter fetched countries
+  useEffect(() => {
+      setAllCountries(
+        fetchedCountries.filter((country) => {
+          return (
+            country.name.common.toLowerCase().includes(nameSearchField.toLowerCase()) &&
+            country.region.toLowerCase().includes(regionFilter.toLowerCase())
+          );
+        })
+      );
+  }, [regionFilter, nameSearchField]);
+
   return (
     <>
       <NavBar />
@@ -37,23 +68,42 @@ const HomePage = () => {
                   aria-label="Example text with button addon"
                   aria-describedby="basic-addon1"
                   placeholder="Search for a country..."
+                  onChange={(e) => setNameSearchField(e.target.value)}
                 />
               </InputGroup>
             </Col>
             <Col md={{ span: 2, offset: 6 }}>
-              <Select />
+              <Select regionFilter={regionFilter} setRegionFilter={setRegionFilter} />
             </Col>
           </Row>
-          <Row className="mt-4 pt-2"  >
-            {allCountries?.map((country) => {
-              const {name,population, region, capital, flags } = country;
-              return (
-                <Col xs lg="3" style={{marginBottom: '5rem'}}>
-                  <CountryCard name={name.common} population={population} region={region} capital={capital} flag={flags.png}/>
-                </Col>
-              );
-            })}
-          </Row>
+          {countiesToDisplay.length > 0 ? (
+            <InfiniteScroll
+              dataLength={countiesToDisplay.length}
+              next={fetchMoreData}
+              hasMore={true}
+            >
+              <Row className="mt-4 pt-2 justify-content-between">
+                {countiesToDisplay?.map((country) => {
+                  const { name, population, region, capital, flags } = country;
+                  return (
+                    <Col xs lg="3" style={{ marginBottom: "5rem" }} className="country_card">
+                      <CountryCard
+                        name={name.common}
+                        population={population}
+                        region={region}
+                        capital={capital}
+                        flag={flags.png}
+                      />
+                    </Col>
+                  );
+                })}
+              </Row>
+            </InfiniteScroll>
+          ) : (
+            <div className="d-flex justify-content-center mt-5">
+              <Spinner animation="border" />
+            </div>
+          )}
         </Container>
       </div>
     </>

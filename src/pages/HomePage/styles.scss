@@ -3,13 +3,13 @@
     margin-top: 3rem;
     .searchBox {
         padding: 0.5rem;
-        background-color: var( --BackgroundElmns);
-        box-shadow: 0px 6px 9px 0px var( --Boxshadow);
+        background-color: var(--BackgroundElmns);
+        box-shadow: 0px 0px 6px 2px var(--Boxshadow);
         border-radius: 6px;
         input,
         button {
-            box-shadow: unset!important;
-            background-color: transparent!important;
+            box-shadow: unset !important;
+            background-color: transparent !important;
             border: none;
         }
         input {
@@ -31,4 +31,16 @@
             }
         }
     }
+}
+
+.country_card {
+    @media (min-width: 992px) {
+        flex: 1 0 23%;
+        max-width: 23%;
+    }
+}
+
+.infinite-scroll-component {
+    overflow: hidden!important;
+    overflow-y: auto;
 }
