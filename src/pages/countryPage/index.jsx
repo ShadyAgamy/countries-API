@@ -6,6 +6,7 @@ import NavBar from "../../components/navbar";
 
 import { Container, Button, Row, Col } from "react-bootstrap";
 
+import millify from "millify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -28,7 +29,12 @@ function CountryPage() {
 
   const { name, flags, population, region, subregion, capital, flag, currencies, languages } =
     country;
-    console.log(name)
+
+//   console.log(
+//     millify(0, {
+//       precision: 3,
+//     })
+//   );
 
   return (
     <>
@@ -45,18 +51,31 @@ function CountryPage() {
           <Col md={6}>
             <h3 className="h3 fw-bold">{name?.common}</h3>
             <div className="d-flex justify-content-between align-items-center">
-                <h5>Native name: <span>{name?.nativeName[Object.keys(name.nativeName)[0]].official}</span></h5>
-                <h5>top level domain: <span>{flag}</span></h5>
+              <h5>
+                Native name:
+                <span>{name?.nativeName[Object.keys(name.nativeName)[0]].official}</span>
+              </h5>
+              <h5>
+                top level domain: <span>{flag}</span>
+              </h5>
             </div>
             <div className="d-flex justify-content-between align-items-center">
-                <h5>population: <span>{population}</span></h5>
-                <h5>currencies: <span>{currencies ? currencies[Object.keys(currencies)[0]].name: null}</span></h5>
+              <h5>
+                population:
+                <span>
+                  {population  ? millify(population, {
+                    precision: 3,
+                  }): 0}
+                </span>
+              </h5>
+              <h5>
+                currencies:
+                <span>{currencies ? currencies[Object.keys(currencies)[0]].name : null}</span>
+              </h5>
             </div>
           </Col>
         </Row>
       </Container>
-
-      
     </>
   );
 }

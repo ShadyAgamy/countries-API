@@ -1,32 +1,35 @@
-import React from 'react';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import millify from "millify";
+import { Card } from "react-bootstrap";
 
-import {Link} from "react-router-dom";
+import "./styles.scss";
 
-import {Card} from "react-bootstrap";
-
-import "./styles.scss"
-
-const CountryCard = ({name,population,region,capital,flag}) => {
+const CountryCard = ({ name, population, region, capital, flag }) => {
+  const history = useHistory();
+  const toCountryPage = () => {
+    history.push(`/countries/${name}`);
+  };
   return (
-    <Link to={`/countries/${name}`}>
-     <Card className='main_shadow' style={{ width: '100%', height: "100%", borderRadius: "10px" }}>
-    <Card.Img variant="top" src={flag} />
-    <Card.Body>
-      <Card.Title>{name}</Card.Title>
-      <Card.Text>
-      region: {region}
-      </Card.Text>
-      <Card.Text>
-      population: {population}
-      </Card.Text>
-      <Card.Text>
-      capital: {capital}
-      </Card.Text>
-    </Card.Body>
-  </Card>
-    </Link>
-   
-  )
-}
+    <Card
+      onClick={toCountryPage}
+      className="main_shadow"
+      style={{ width: "100%", height: "100%", borderRadius: "10px" }}
+    >
+      <Card.Img variant="top" src={flag} />
+      <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Card.Text>region: {region}</Card.Text>
+        <Card.Text>
+          population:
+          {millify(population, {
+            precision: 3,
+          })}
+        </Card.Text>
+        <Card.Text>capital: {capital}</Card.Text>
+      </Card.Body>
+    </Card>
+  );
+};
 
-export default CountryCard
+export default CountryCard;
