@@ -5,10 +5,10 @@ import { Card } from "react-bootstrap";
 
 import "./styles.scss";
 
-const CountryCard = ({ name, population, region, capital, flag }) => {
+const CountryCard = ({ name, population, region, capital, flag, code }) => {
   const history = useHistory();
   const toCountryPage = () => {
-    history.push(`/countries/${name}`);
+    history.push(`/countries/${code.replaceAll('.', '')}`);
   };
   return (
     <Card

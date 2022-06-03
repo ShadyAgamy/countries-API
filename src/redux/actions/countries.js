@@ -32,9 +32,9 @@ export const getAllCountries = () => (dispatch) => {
         );
 };
 
-export const getCountry = countryName => async dispatch => {
+export const getCountry = countryCode => async dispatch => {
     try {
-        const response = await api.get(`/name/${countryName}`)
+        const response = await api.get(`/alpha/${countryCode}`)
         dispatch({
             type: FETCH_COUNTRY,
             payload: response.data[0],

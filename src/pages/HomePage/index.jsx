@@ -84,7 +84,7 @@ const HomePage = () => {
             >
               <Row className="mt-4 pt-2 justify-content-between">
                 {countiesToDisplay?.map((country) => {
-                  const { name, population, region, capital, flags } = country;
+                  const { name, population, region, capital, flags, tld } = country;
                   return (
                     <Col xs lg="3" style={{ marginBottom: "5rem" }} className="country_card">
                       <CountryCard
@@ -93,6 +93,7 @@ const HomePage = () => {
                         region={region}
                         capital={capital}
                         flag={flags.png}
+                        code={tld ? tld[0] :"we"}
                       />
                     </Col>
                   );
