@@ -1,7 +1,7 @@
 # Overwiew
 Integration with the REST Countries API to pull country data and display it in a good design
 
-# The challengr 
+# The challenge
 User should be able to:
 - See all countries from the API on the homepage
 - Search for a country using an input field
