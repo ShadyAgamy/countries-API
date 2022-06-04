@@ -2,9 +2,12 @@ import { combineReducers } from "redux";
 
 import messageReducer from "./message";
 
-import { allCountries } from "./countries"
+import { allCountries } from "./countries";
+
+import { theme_switcher } from "./themeSwitcher";
 
 export default combineReducers({
     message: messageReducer,
-    allCountries: allCountries
+    allCountries,
+    theme_switcher
 });

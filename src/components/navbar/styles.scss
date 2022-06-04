@@ -4,5 +4,18 @@
     &-brand {
         font-weight: bold;
         font-size: 1.5rem;
+        color: var(--textColor)!important;
+    }
+    .darkMode {
+        margin-left: auto;
+        color: var(--textColor);
+        text-transform: capitalize;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        svg {
+            margin-right: 5px;
+            transform: translateY(-1px);
+        }
     }
 }

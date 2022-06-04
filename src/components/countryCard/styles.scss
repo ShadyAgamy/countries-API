@@ -2,6 +2,8 @@
     cursor: pointer;
     border-radius: 9px;
     overflow: hidden;
+    background-color: var(--BackgroundElmns)!important;
+    color: var( --textColor);
     .card-img-top {
         height: 13rem;
         border-radius: unset;

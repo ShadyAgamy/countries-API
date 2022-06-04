@@ -122,7 +122,7 @@ function CountryPage() {
               <Col >
                 <h5 className="d-flex align-items-center">
                 borders countries:
-                 {borders?.map(border => <Badge bg="light" className="main_shadow" onClick={() => history.push(`/countries/${border}`)}>{border}</Badge>)}
+                 {borders?.map(border => <Badge className="main_shadow" onClick={() => history.push(`/countries/${border}`)}>{border}</Badge>)}
                 </h5>
               </Col>
             </Row>
