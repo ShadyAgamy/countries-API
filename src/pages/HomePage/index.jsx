@@ -5,7 +5,7 @@ import NavBar from "../../components/navbar";
 import Select from "../../components/selectBox";
 import CountryCard from "../../components/countryCard";
 
-import { Container, InputGroup, FormControl, Row, Col, Button, Spinner } from "react-bootstrap";
+import { Container, InputGroup, FormControl, Row, Col, Button } from "react-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -82,7 +82,7 @@ const HomePage = () => {
               next={fetchMoreData}
               hasMore={true}
             >
-              <Row className="mt-4 pt-2 justify-content-between">
+              <Row className="mt-4 pt-2 ">
                 {countiesToDisplay?.map((country) => {
                   const { name, population, region, capital, flags, tld } = country;
                   return (
@@ -101,8 +101,8 @@ const HomePage = () => {
               </Row>
             </InfiniteScroll>
           ) : (
-            <div className="d-flex justify-content-center mt-5">
-              <Spinner animation="border" />
+            <div className="d-flex justify-content-center mt-5 loadingMsg">
+              <h3>No countries founded</h3>
             </div>
           )}
         </Container>

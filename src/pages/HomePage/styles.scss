@@ -33,14 +33,13 @@
     }
 }
 
-.country_card {
-    @media (min-width: 992px) {
-        flex: 1 0 23%;
-        max-width: 23%;
-    }
-}
-
 .infinite-scroll-component {
     overflow: hidden!important;
     overflow-y: auto;
+}
+
+.loadingMsg {
+    height: 35vh;
+    align-items: center;
+    color: var(--textColor);
 }

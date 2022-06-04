@@ -25,7 +25,7 @@ function CountryPage() {
 
   useEffect(() => {
     dispatch(getCountry(nameParam));
-  }, [nameParam]);
+  }, [dispatch, nameParam]);
 
   const { name, flags, population, region, subregion, capital, borders, currencies, languages, tld } =
     country;
@@ -119,11 +119,11 @@ function CountryPage() {
               </Col>
             </Row>
             <Row className=" borders">
-              <Col >
-                <h5 className="d-flex align-items-center">
-                borders countries:
+              <Col className="d-flex align-items-center">
+                <h5>borders countries:</h5>
+                <div className="d-flex align-items-center flex-wrap">
                  {borders?.map(border => <Badge className="main_shadow" onClick={() => history.push(`/countries/${border}`)}>{border}</Badge>)}
-                </h5>
+                </div>
               </Col>
             </Row>
           </Col>

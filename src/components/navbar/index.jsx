@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {swithTheme} from "../../redux/actions/theme_switcher";
 import { Navbar, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +8,7 @@ import "./styles.scss";
 
 function NavBar() {
   const dispatch = useDispatch();
+  const darkTheme = useSelector((state) => state.theme_switcher.darkMode);
  
   return (
     <Navbar className="py-3 px-0">
@@ -15,7 +16,7 @@ function NavBar() {
         <Navbar.Brand>Where in the world?</Navbar.Brand>
         <div className="darkMode d-flex align-items-center justify-content-center" onClick={()=> dispatch(swithTheme())}>
           <FontAwesomeIcon icon={faMoon} className="ml-auto" />
-          <span>dark mode</span>
+          <span>{darkTheme ? 'light mode' : 'dark mode'}</span>
         </div>
       </Container>
     </Navbar>

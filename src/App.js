@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage/index";
 import CountryPage from "./pages/countryPage";
 import { useSelector } from "react-redux";
 import history from "./history";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./app.scss";
 
 export default function App() {
